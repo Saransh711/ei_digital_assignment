@@ -24,11 +24,17 @@ class AppColors {
   /// Surface color for cards and elevated components
   static const Color surface = Color(0xFFFFFFFF);
 
+  static const Color grey = Color(0xFFf8f8f8);
+
   /// Primary text color for headings and important content
   static const Color textPrimary = Color(0xFF212121);
 
+  static const Color detailPanelColor = Color(0xFF666666);
+
+  static const Color detailPanelTextColor = Color(0xFF000000);
+
   /// Secondary text color for supporting information
-  static const Color textSecondary = Color(0xFF757575);
+  static const Color textSecondary = Color(0xFF44474E);
 
   /// Tertiary text color for hints and subtle information
   static const Color textTertiary = Color(0xFF9E9E9E);

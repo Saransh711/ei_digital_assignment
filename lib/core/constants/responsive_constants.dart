@@ -13,10 +13,10 @@ class ResponsiveBreakpoints {
 class PanelConstants {
   PanelConstants._();
 
-  static const double leftPanelSmall = 280.0;
-  static const double leftPanelMedium = 320.0;
-  static const double leftPanelLarge = 360.0;
-  static const double leftPanelExtraLarge = 400.0;
+  static const double leftPanelSmall = 250.0;
+  static const double leftPanelMedium = 300.0;
+  static const double leftPanelLarge = 350.0;
+  static const double leftPanelExtraLarge = 380.0;
   static const double collapsedWidth = 0.0;
   static const double minRightPanelWidth = 400.0;
 }

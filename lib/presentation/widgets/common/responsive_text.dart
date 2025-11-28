@@ -37,6 +37,9 @@ class ResponsiveText extends StatelessWidget {
   /// Semantic label for accessibility
   final String? semanticsLabel;
 
+  ///Font size override
+  final double? fontSize;
+
   /// Creates a responsive text widget
   const ResponsiveText(
     this.text, {
@@ -49,6 +52,7 @@ class ResponsiveText extends StatelessWidget {
     this.overflow,
     this.selectable = false,
     this.semanticsLabel,
+    this.fontSize,
   });
 
   /// Create a headline text widget
@@ -62,6 +66,7 @@ class ResponsiveText extends StatelessWidget {
     this.overflow,
     this.selectable = false,
     this.semanticsLabel,
+    this.fontSize,
   }) : style = ResponsiveTextStyle.headlineMedium;
 
   /// Create a title text widget
@@ -75,6 +80,7 @@ class ResponsiveText extends StatelessWidget {
     this.overflow,
     this.selectable = false,
     this.semanticsLabel,
+    this.fontSize,
   }) : style = ResponsiveTextStyle.headlineSmall;
 
   /// Create a body text widget
@@ -88,6 +94,7 @@ class ResponsiveText extends StatelessWidget {
     this.overflow,
     this.selectable = false,
     this.semanticsLabel,
+    this.fontSize,
   }) : style = ResponsiveTextStyle.bodyMedium;
 
   /// Create a caption text widget
@@ -101,6 +108,7 @@ class ResponsiveText extends StatelessWidget {
     this.overflow,
     this.selectable = false,
     this.semanticsLabel,
+    this.fontSize,
   }) : style = ResponsiveTextStyle.bodySmall;
 
   /// Create a label text widget
@@ -114,6 +122,7 @@ class ResponsiveText extends StatelessWidget {
     this.overflow,
     this.selectable = false,
     this.semanticsLabel,
+    this.fontSize,
   }) : style = ResponsiveTextStyle.labelMedium;
 
   @override
@@ -199,6 +208,7 @@ class ResponsiveText extends StatelessWidget {
     return baseStyle.copyWith(
       color: color ?? baseStyle.color,
       fontWeight: fontWeight ?? baseStyle.fontWeight,
+      fontSize: fontSize ?? baseStyle.fontSize,
     );
   }
 }

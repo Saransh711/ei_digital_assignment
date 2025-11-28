@@ -39,38 +39,40 @@ class MainScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: BlocBuilder<PanelBloc, PanelState>(
-        builder: (context, panelState) {
-          if (panelState is PanelInitial) {
-            final shouldExpand = PanelBloc.shouldExpandByDefault(
-              MediaQuery.of(context).size.width,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        body: BlocBuilder<PanelBloc, PanelState>(
+          builder: (context, panelState) {
+            if (panelState is PanelInitial) {
+              final shouldExpand = PanelBloc.shouldExpandByDefault(
+                MediaQuery.of(context).size.width,
+              );
+
+              // Send initialization event from UI layer
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (context.mounted) {
+                  context.read<PanelBloc>().add(
+                    InitializePanelEvent(shouldExpand: shouldExpand),
+                  );
+                }
+              });
+
+              // Return loading state while initializing
+              return const Center(child: CircularProgressIndicator.adaptive());
+            }
+
+            return Row(
+              children: [
+                // Left Panel (Guest List)
+                _buildLeftPanel(context, panelState),
+
+                // Right Panel (Detail View)
+                _buildRightPanel(context, panelState),
+              ],
             );
-
-            // Send initialization event from UI layer
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (context.mounted) {
-                context.read<PanelBloc>().add(
-                  InitializePanelEvent(shouldExpand: shouldExpand),
-                );
-              }
-            });
-
-            // Return loading state while initializing
-            return const Center(child: CircularProgressIndicator.adaptive());
-          }
-
-          return Row(
-            children: [
-              // Left Panel (Guest List)
-              _buildLeftPanel(context, panelState),
-
-              // Right Panel (Detail View)
-              _buildRightPanel(context, panelState),
-            ],
-          );
-        },
+          },
+        ),
       ),
     );
   }
@@ -145,6 +147,7 @@ class MainScreenView extends StatelessWidget {
             icon: Icon(
               panelState.isExpanded ? Icons.arrow_back : Icons.menu,
               color: AppColors.textPrimary,
+              size: context.responsiveFontSize(24),
             ),
             onPressed: () {
               if (panelState.isExpanded) {
